@@ -6,18 +6,20 @@ block content
   #app
     form#test-form
       .questions
+        // Выводим все вопросы, расставляем классы активности вопросов
         .question(
           v-for="(question, questionIndex) in questions"
           v-bind:class="{'question--active': questionIndex === activeElement}"
           :key="{questionIndex}")
+          // Заголовок вопроса
           h3 {{questionIndex}}. {{question.question}}
           .radios
+            // Выводим все радио баттоны
             .radio(v-for="(option, optionIndex) in question.options")
-              label
-                //- input(type="radio" :name="'option' + questionIndex" :value="'option' + optionIndex" v-model="checkedOptions")
+              label(v-on:click="optionClick")
                 input(
                   type="radio"
                   :name="'option' + questionIndex"
                   :value="'option' + optionIndex")
                 span {{option.optionName}}
-    button(v-on:click="sendAnswer").btn.btn-primary Дальше
+    button#send-answer(v-on:click="sendAnswer" v-bind:class="{ disabled: isActive }").btn.btn-primary Дальше

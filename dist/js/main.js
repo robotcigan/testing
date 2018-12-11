@@ -23,25 +23,49 @@
 
 var questions = [{
   "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
+  "type": "radio",
   "options": [{ "optionName": "Шығыс Қазақстан", "correct": false }, { "optionName": "Орталық Қазақстан", "correct": false }, { "optionName": "Арал маңы", "correct": true }, { "optionName": "Оңтүстік Қазақстан", "correct": false }, { "optionName": "Жетісу", "correct": false }]
 }, {
   "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
+  "type": "radio",
+  "options": [{ "optionName": "Шығыс Қазақстан", "correct": false }, { "optionName": "Орталық Қазақстан", "correct": false }, { "optionName": "Арал маңы", "correct": true }, { "optionName": "Оңтүстік Қазақстан", "correct": false }, { "optionName": "Жетісу", "correct": false }]
+}, {
+  "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
+  "type": "radio",
   "options": [{ "optionName": "Шығыс Қазақстан", "correct": false }, { "optionName": "Орталық Қазақстан", "correct": false }, { "optionName": "Арал маңы", "correct": true }, { "optionName": "Оңтүстік Қазақстан", "correct": false }, { "optionName": "Жетісу", "correct": false }]
 }];
+
+var total = [];
 
 var app = new Vue({
   el: '#app',
   data: {
-    total: [],
-    checkedOptions: [],
     questions: questions,
-    activeElement: 0
+    activeElement: 0,
+    isActive: true
   },
   methods: {
+    optionClick: function optionClick() {
+      console.log(this.isActive);
+      // var options = document.getElementsByName('option' + this.activeElement);
+      // for (var i = 0; i < options.length; i++) {
+      //   if (options[i].checked === true) {
+      //     // this.isActive = !this.isActive;
+      //   }
+      // }
+    },
     sendAnswer: function sendAnswer() {
-      this.total.push(this.checkedOptions);
-      this.activeElement++;
-      console.log(this.total);
+      // this.isActive = !this.isActive;
+      if (document.getElementById('send-answer').classList.contains('disabled') === false) {
+        var options = document.getElementsByName('option' + this.activeElement);
+        for (var i = 0; i < options.length; i++) {
+          if (options[i].checked) {
+            total.push(i);
+          }
+        }
+        console.log(total);
+        this.activeElement++;
+      }
     }
     // computed: {
     //   questionsFilter: function() {
