@@ -1,0 +1,23 @@
+extends layout.pug
+
+block content
+
+  h1 Тест по математике
+  #app
+    form#test-form
+      .questions
+        .question(
+          v-for="(question, questionIndex) in questions"
+          v-bind:class="{'question--active': questionIndex === activeElement}"
+          :key="{questionIndex}")
+          h3 {{questionIndex}}. {{question.question}}
+          .radios
+            .radio(v-for="(option, optionIndex) in question.options")
+              label
+                //- input(type="radio" :name="'option' + questionIndex" :value="'option' + optionIndex" v-model="checkedOptions")
+                input(
+                  type="radio"
+                  :name="'option' + questionIndex"
+                  :value="'option' + optionIndex")
+                span {{option.optionName}}
+    button(v-on:click="sendAnswer").btn.btn-primary Дальше

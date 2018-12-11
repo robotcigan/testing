@@ -1,0 +1,10 @@
+.question {
+  /*display: none;*/
+}
+
+.question--active {
+  display: block;
+}
+.active {
+  display: block;
+}
