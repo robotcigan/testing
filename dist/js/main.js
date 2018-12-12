@@ -41,27 +41,35 @@ var app = new Vue({
   el: '#app',
   data: {
     questions: questions,
-    activeElement: 0,
-    isActive: true
+    activeElement: 0
   },
   methods: {
-    optionClick: function optionClick() {
-      console.log(this.isActive);
-      // var options = document.getElementsByName('option' + this.activeElement);
-      // for (var i = 0; i < options.length; i++) {
-      //   if (options[i].checked === true) {
-      //     // this.isActive = !this.isActive;
-      //   }
-      // }
+    // optionClick: function() {
+    //   var options = document.getElementsByName('option' + this.activeElement);
+    //   for (var i = 0; i < options.length; i++) {
+    //     console.log(this.isActive)
+    //     if (options[i].checked === true) {
+    //       this.isActive = !this.isActive;
+    //     }
+    //   }
+    // },
+    optionChange: function optionChange() {
+      var options = document.getElementsByName('option' + this.activeElement);
+      for (var i = 0; i < options.length; i++) {
+        // console.log(this.isActive)
+        if (options[i].checked === true) {
+          document.getElementById('send-answer').classList.remove('disabled');
+        }
+      }
     },
     sendAnswer: function sendAnswer() {
-      // this.isActive = !this.isActive;
       if (document.getElementById('send-answer').classList.contains('disabled') === false) {
         var options = document.getElementsByName('option' + this.activeElement);
         for (var i = 0; i < options.length; i++) {
           if (options[i].checked) {
             total.push(i);
           }
+          document.getElementById('send-answer').classList.add('disabled');
         }
         console.log(total);
         this.activeElement++;

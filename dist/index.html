@@ -16,25 +16,25 @@
         <form id="test-form">
           <div class="questions">
             <!-- Выводим все вопросы, расставляем классы активности вопросов-->
-            <div class="question" v-for="(question, questionIndex) in questions" v-bind:class="{'question--active': questionIndex === activeElement}" :key="{questionIndex}">
+            <div class="question" v-for="(question, questionIndex) in questions" v-bind:class="{'question--active': questionIndex === activeElement}" :key="questionIndex">
               <!-- Заголовок вопроса-->
               <h3>{{questionIndex}}. {{question.question}}</h3>
               <div class="radios">
                 <!-- Выводим все радио баттоны-->
                 <div class="radio" v-for="(option, optionIndex) in question.options">
-                  <label v-on:click="optionClick">
-                    <input type="radio" :name="'option' + questionIndex" :value="'option' + optionIndex"><span>{{option.optionName}}</span>
+                  <label>
+                    <input type="radio" :name="'option' + questionIndex" :value="'option' + optionIndex" v-on:click="optionChange" v-model="questionIndex"><span>{{option.optionName}}</span>
                   </label>
                 </div>
               </div>
             </div>
           </div>
         </form>
-        <button class="btn btn-primary" id="send-answer" v-on:click="sendAnswer" v-bind:class="{ disabled: isActive }">Дальше</button>
+        <button class="btn btn-primary disabled" id="send-answer" v-on:click="sendAnswer">Дальше</button>
       </div>
     </div>
     <script src="./js/jquery.min.js"></script>
-    <script src="./js/vue.min.js"></script>
+    <script src="./js/vue.js"></script>
     <script src="./js/axios.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
