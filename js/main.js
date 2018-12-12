@@ -1,24 +1,3 @@
-// $(document).ready(function() {
-
-//   var result = [];
-
-//   // form
-//   $('#test-form #send-answer').on('click', function(){
-//     var answer = $(this).closest('#test-form').serialize();
-//     result.push(answer);
-//     // console.log('some', $(this).closest('#test-form').serialize());
-//     $('input[name="result"').val(result);
-//   });
-//   // function showValues() {
-//   //   var str = $( "form" ).serialize();
-//   //   $( "#results" ).text( str );
-//   // }
-//   // $( "input[type='checkbox'], input[type='radio']" ).on( "click", showValues );
-//   // $( "select" ).on( "change", showValues );
-//   // showValues();
-
-// });
-
 var questions = [
   {
     "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
@@ -64,15 +43,6 @@ var app = new Vue({
     activeElement: 0
   },
   methods: {
-    // optionClick: function() {
-    //   var options = document.getElementsByName('option' + this.activeElement);
-    //   for (var i = 0; i < options.length; i++) {
-    //     console.log(this.isActive)
-    //     if (options[i].checked === true) {
-    //       this.isActive = !this.isActive;
-    //     }
-    //   }
-    // },
     optionChange: function() {
       var options = document.getElementsByName('option' + this.activeElement);
       for (var i = 0; i < options.length; i++) {
@@ -96,14 +66,7 @@ var app = new Vue({
       }
     }
   }
-  // computed: {
-  //   questionsFilter: function() {
-  //     this.activeElement = 0
-  //   }
-  // }
 });
-
-// app.questionsFilter;
 
 
 
