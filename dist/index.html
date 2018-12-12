@@ -18,13 +18,22 @@
             <!-- Выводим все вопросы, расставляем классы активности вопросов-->
             <div class="question" v-for="(question, questionIndex) in questions" v-bind:class="{'question--active': questionIndex === activeElement}" :key="questionIndex">
               <!-- Заголовок вопроса-->
-              <h3>{{questionIndex}}. {{question.question}}</h3>
-              <div class="radios">
+              <h3>{{questionIndex + 1}}. {{question.question}}</h3>
+              <div class="options">
                 <!-- Выводим все радио баттоны-->
-                <div class="radio" v-for="(option, optionIndex) in question.options">
-                  <label>
-                    <input type="radio" :name="'option' + questionIndex" :value="'option' + optionIndex" v-on:click="optionChange" v-model="questionIndex"><span>{{option.optionName}}</span>
-                  </label>
+                <div v-if="question.type === 'radio'">
+                  <div class="radio" v-for="(option, optionIndex) in question.options">
+                    <label>
+                      <input class="form-check-input" type="radio" :name="'option' + questionIndex" :value="'option' + optionIndex" v-on:click="optionChange"><span>{{option.optionName}}</span>
+                    </label>
+                  </div>
+                </div>
+                <div v-else>
+                  <div class="checkbox" v-for="(option, optionIndex) in question.options">
+                    <label>
+                      <input type="checkbox" :name="'option' + questionIndex" :value="'option' + optionIndex" v-on:click="optionChange"><span>{{option.optionName}}</span>
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>

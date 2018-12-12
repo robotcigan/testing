@@ -1,40 +1,24 @@
 "use strict";
 
-// $(document).ready(function() {
-
-//   var result = [];
-
-//   // form
-//   $('#test-form #send-answer').on('click', function(){
-//     var answer = $(this).closest('#test-form').serialize();
-//     result.push(answer);
-//     // console.log('some', $(this).closest('#test-form').serialize());
-//     $('input[name="result"').val(result);
-//   });
-//   // function showValues() {
-//   //   var str = $( "form" ).serialize();
-//   //   $( "#results" ).text( str );
-//   // }
-//   // $( "input[type='checkbox'], input[type='radio']" ).on( "click", showValues );
-//   // $( "select" ).on( "change", showValues );
-//   // showValues();
-
-// });
-
 var questions = [{
   "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
   "type": "radio",
-  "options": [{ "optionName": "Шығыс Қазақстан", "correct": false }, { "optionName": "Орталық Қазақстан", "correct": false }, { "optionName": "Арал маңы", "correct": true }, { "optionName": "Оңтүстік Қазақстан", "correct": false }, { "optionName": "Жетісу", "correct": false }]
+  "options": [{ "optionName": "1Шығыс Қазақстан", "correct": false }, { "optionName": "Орталық Қазақстан", "correct": false }, { "optionName": "Арал маңы", "correct": true }, { "optionName": "Оңтүстік Қазақстан", "correct": false }, { "optionName": "Жетісу", "correct": false }]
 }, {
   "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
   "type": "radio",
-  "options": [{ "optionName": "Шығыс Қазақстан", "correct": false }, { "optionName": "Орталық Қазақстан", "correct": false }, { "optionName": "Арал маңы", "correct": true }, { "optionName": "Оңтүстік Қазақстан", "correct": false }, { "optionName": "Жетісу", "correct": false }]
+  "options": [{ "optionName": "2Шығыс Қазақстан", "correct": false }, { "optionName": "Орталық Қазақстан", "correct": false }, { "optionName": "Арал маңы", "correct": true }, { "optionName": "Оңтүстік Қазақстан", "correct": false }, { "optionName": "Жетісу", "correct": false }]
 }, {
   "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
   "type": "radio",
-  "options": [{ "optionName": "Шығыс Қазақстан", "correct": false }, { "optionName": "Орталық Қазақстан", "correct": false }, { "optionName": "Арал маңы", "correct": true }, { "optionName": "Оңтүстік Қазақстан", "correct": false }, { "optionName": "Жетісу", "correct": false }]
+  "options": [{ "optionName": "3Шығыс Қазақстан", "correct": false }, { "optionName": "Орталық Қазақстан", "correct": false }, { "optionName": "Арал маңы", "correct": true }, { "optionName": "Оңтүстік Қазақстан", "correct": false }, { "optionName": "Жетісу", "correct": false }]
+}, {
+  "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
+  "type": "checkbox",
+  "options": [{ "optionName": "4Шығыс Қазақстан", "correct": true }, { "optionName": "Орталық Қазақстан", "correct": true }, { "optionName": "Арал маңы", "correct": true }, { "optionName": "Оңтүстік Қазақстан", "correct": false }, { "optionName": "Жетісу", "correct": false }]
 }];
 
+// Массив с выбранными ответами
 var total = [];
 
 var app = new Vue({
@@ -44,42 +28,31 @@ var app = new Vue({
     activeElement: 0
   },
   methods: {
-    // optionClick: function() {
-    //   var options = document.getElementsByName('option' + this.activeElement);
-    //   for (var i = 0; i < options.length; i++) {
-    //     console.log(this.isActive)
-    //     if (options[i].checked === true) {
-    //       this.isActive = !this.isActive;
-    //     }
-    //   }
-    // },
+    // Изменение радио и чекбоксов
     optionChange: function optionChange() {
       var options = document.getElementsByName('option' + this.activeElement);
       for (var i = 0; i < options.length; i++) {
-        // console.log(this.isActive)
         if (options[i].checked === true) {
           document.getElementById('send-answer').classList.remove('disabled');
         }
       }
     },
+    // Нажатие на кнопку далее
     sendAnswer: function sendAnswer() {
       if (document.getElementById('send-answer').classList.contains('disabled') === false) {
         var options = document.getElementsByName('option' + this.activeElement);
+        var checked = [];
         for (var i = 0; i < options.length; i++) {
           if (options[i].checked) {
-            total.push(i);
+            checked.push(i);
+            // total.push(i)
           }
           document.getElementById('send-answer').classList.add('disabled');
         }
+        total.push(checked);
         console.log(total);
         this.activeElement++;
       }
     }
-    // computed: {
-    //   questionsFilter: function() {
-    //     this.activeElement = 0
-    //   }
-    // }
-  } });
-
-// app.questionsFilter;
+  }
+});

@@ -12,16 +12,26 @@ block content
           v-bind:class="{'question--active': questionIndex === activeElement}"
           :key="questionIndex")
           // Заголовок вопроса
-          h3 {{questionIndex}}. {{question.question}}
-          .radios
+          h3 {{questionIndex + 1}}. {{question.question}}
+          .options
             // Выводим все радио баттоны
-            .radio(v-for="(option, optionIndex) in question.options")
-              label
-                input(
-                  type="radio"
-                  :name="'option' + questionIndex"
-                  :value="'option' + optionIndex"
-                  v-on:click="optionChange"
-                  v-model="questionIndex")
-                span {{option.optionName}}
+            div(v-if="question.type === 'radio'")
+              .radio(v-for="(option, optionIndex) in question.options")
+                label
+                  input.form-check-input(
+                    type="radio"
+                    :name="'option' + questionIndex"
+                    :value="'option' + optionIndex"
+                    v-on:click="optionChange")
+                  span {{option.optionName}}
+            div(v-else)
+              .checkbox(v-for="(option, optionIndex) in question.options")
+                label
+                  input(
+                    type="checkbox"
+                    :name="'option' + questionIndex"
+                    :value="'option' + optionIndex"
+                    v-on:click="optionChange")
+                  span {{option.optionName}}
+
     button#send-answer(v-on:click="sendAnswer").btn.btn-primary.disabled Дальше
