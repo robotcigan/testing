@@ -1,5 +1,6 @@
 var questions = [
   {
+    "id": "1",
     "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
     "type": "radio",
     "options": [
@@ -11,6 +12,7 @@ var questions = [
     ]
   },
   {
+    "id": "2",
     "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
     "type": "radio",
     "options": [
@@ -22,6 +24,7 @@ var questions = [
     ]
   },
   {
+    "id": "3",
     "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
     "type": "radio",
     "options": [
@@ -33,6 +36,7 @@ var questions = [
     ]
   },
   {
+    "id": "4",
     "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
     "type": "checkbox",
     "options": [
@@ -72,11 +76,10 @@ var app = new Vue({
         for (var i = 0; i < options.length; i++) {
           if (options[i].checked) {
             checked.push(i);
-            // total.push(i)
           }
           document.getElementById('send-answer').classList.add('disabled');
         }
-        total.push(checked);
+        total.push({'id': questions[this.activeElement].id,'checkedOptions': checked});
         console.log(total);
         this.activeElement++;
       }
