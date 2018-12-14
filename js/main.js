@@ -156,7 +156,7 @@ var app = new Vue({
     // Получение вопросов через api
     getQuestions: function() {
       var that = this;
-      axios.get('http://kuznetsovdev.ru/api/questions?id=2')
+      axios.get('https://kuznetsovdev.ru/api/questions?id=2')
         .then(function (response) {
           that.questions = response.data;
           console.log(that.questions)
