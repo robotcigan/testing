@@ -1,79 +1,59 @@
-// var questions = [
-//   {
-//     "id": "4",
-//     "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
-//     "type": "checkbox",
-//     "options": [
-//       {"optionName": "4Шығыс Қазақстан", "correct": true},
-//       {"optionName": "Орталық Қазақстан", "correct": true},
-//       {"optionName": "Арал маңы", "correct": true},
-//       {"optionName": "Оңтүстік Қазақстан", "correct": false},
-//       {"optionName": "Жетісу", "correct": false}
-//     ]
-//   },
-//   {
-//     "id": "1",
-//     "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
-//     "type": "radio",
-//     "options": [
-//       {"optionName": "1Шығыс Қазақстан", "correct": false},
-//       {"optionName": "Орталық Қазақстан", "correct": false},
-//       {"optionName": "Арал маңы", "correct": true},
-//       {"optionName": "Оңтүстік Қазақстан", "correct": false},
-//       {"optionName": "Жетісу", "correct": false}
-//     ]
-//   },
-//   {
-//     "id": "2",
-//     "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
-//     "type": "radio",
-//     "options": [
-//       {"optionName": "2Шығыс Қазақстан", "correct": false},
-//       {"optionName": "Орталық Қазақстан", "correct": false},
-//       {"optionName": "Арал маңы", "correct": true},
-//       {"optionName": "Оңтүстік Қазақстан", "correct": false},
-//       {"optionName": "Жетісу", "correct": false}
-//     ]
-//   },
-//   {
-//     "id": "3",
-//     "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
-//     "type": "radio",
-//     "options": [
-//       {"optionName": "3Шығыс Қазақстан", "correct": false},
-//       {"optionName": "Орталық Қазақстан", "correct": false},
-//       {"optionName": "Арал маңы", "correct": true},
-//       {"optionName": "Оңтүстік Қазақстан", "correct": false},
-//       {"optionName": "Жетісу", "correct": false}
-//     ]
-//   },
-//   {
-//     "id": "4",
-//     "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
-//     "type": "checkbox",
-//     "options": [
-//       {"optionName": "4Шығыс Қазақстан", "correct": true},
-//       {"optionName": "Орталық Қазақстан", "correct": true},
-//       {"optionName": "Арал маңы", "correct": true},
-//       {"optionName": "Оңтүстік Қазақстан", "correct": false},
-//       {"optionName": "Жетісу", "correct": false}
-//     ]
-//   }
-// ];
+var questions = [
+  {
+    "id": "1",
+    "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
+    "type": "radio",
+    "options": [
+      {"optionName": "1Шығыс Қазақстан", "correct": false},
+      {"optionName": "Орталық Қазақстан", "correct": false},
+      {"optionName": "Арал маңы", "correct": true},
+      {"optionName": "Оңтүстік Қазақстан", "correct": false},
+      {"optionName": "Жетісу", "correct": false}
+    ]
+  },
+  {
+    "id": "2",
+    "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
+    "type": "radio",
+    "options": [
+      {"optionName": "2Шығыс Қазақстан", "correct": false},
+      {"optionName": "Орталық Қазақстан", "correct": false},
+      {"optionName": "Арал маңы", "correct": true},
+      {"optionName": "Оңтүстік Қазақстан", "correct": false},
+      {"optionName": "Жетісу", "correct": false}
+    ]
+  },
+  {
+    "id": "3",
+    "question": "Тегістегіш-жоңғыштар кездесетін неолиттік Қараүңгір тұрағы табылған аймақ",
+    "type": "checkbox",
+    "options": [
+      {"optionName": "4Шығыс Қазақстан", "correct": true},
+      {"optionName": "Орталық Қазақстан", "correct": true},
+      {"optionName": "Арал маңы", "correct": true},
+      {"optionName": "Оңтүстік Қазақстан", "correct": false},
+      {"optionName": "Жетісу", "correct": false}
+    ]
+  }
+];
 
 // var questions = [];
 
 // Массив с выбранными ответами
 var checkedRight = [];
-var total = [];
+var total = {
+  'questions': [],
+  'score': 0
+};
 var scoreCount = 0;
 
 var app = new Vue({
   el: '#app',
   data: {
-    questions: [],
-    // questions: questions,
-    activeElement: 0
+    // questions: [],
+    questions: questions,
+    activeElement: 0,
+    sendResultShow: false
   },
   methods: {
     // Изменение радио и чекбоксов
@@ -141,15 +121,33 @@ var app = new Vue({
             }
             break;
         }
-        console.log('всего правильных ответо', allScore);
-        console.log('количество выбранных правильно', checkedRight);
-        console.log('баллов набрал', scoreCount);
+        // console.log('всего правильных ответо', allScore);
+        // console.log('количество выбранных правильно', checkedRight);
+        // console.log('баллов набрал', scoreCount);
         // Записываем итоги
-        total.push({'id': this.questions[this.activeElement].id,'checkedOptions': checked});
+        total.questions.push({
+          'id': this.questions[this.activeElement].id,
+          'checkedOptions': checked
+        });
         console.log('total', total);
         // Переключаем на следующий вопрос
         this.activeElement++;
+        if (this.questions.length === (this.activeElement)) {
+          this.sendResultShow = 1
+        }
       }
+    },
+    sendResult: function() {
+      total.score = scoreCount;
+      console.log(total)
+      // axios.get('https://kuznetsovdev.ru/api/stat', {
+      // })
+      // .then(function(res) {
+      //   console.log(res)
+      // })
+      // .catch(function(err) {
+      //   console.log(err)
+      // });
     }
   },
   computed: {
@@ -157,9 +155,9 @@ var app = new Vue({
     getQuestions: function() {
       var that = this;
       axios.get('https://kuznetsovdev.ru/api/questions?id=2')
-        .then(function (response) {
-          that.questions = response.data;
-          console.log(that.questions)
+        .then(function (res) {
+          that.questions = res.data;
+          // console.log(that.questions)
         })
         .catch(function (error) {
           console.log(error);
@@ -168,6 +166,6 @@ var app = new Vue({
   }
 });
 
-app.getQuestions;
+// app.getQuestions;
 
 

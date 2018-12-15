@@ -35,3 +35,9 @@ block content
                   span {{option.optionName}}
 
     button#send-answer(v-on:click="sendAnswer").btn.btn-primary.disabled Дальше
+    button#send-result(
+      v-on:click="sendResult"
+      v-show="sendResultShow"
+      ).btn.btn-success Отправить результат
+
+
